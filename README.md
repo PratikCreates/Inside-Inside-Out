@@ -62,94 +62,75 @@ For demos and hackathons. Just paste your API keys (Gemini + ElevenLabs) in the 
 
 ### Quick Start
 
-1. **Clone the repo**
+1. **Clone and navigate**
    ```bash
    git clone https://github.com/PratikCreates/Inside-Inside-Out.git
    cd Inside-Inside-Out
    ```
 
-2. **Set up environment variables**
-   - Copy `.env.example` to `.env`
-   - Add your API keys
+2. **Add your API keys**
+   ```bash
+   # Copy the example file
+   cp .env.example .env
+   
+   # Edit .env and add:
+   # GEMINI_API_KEY=your_key_here
+   # ELEVENLABS_API_KEY=your_key_here
+   ```
 
 3. **Install dependencies**
    ```bash
-   # Backend
-   cd backend
-   pip install -r requirements.txt
-   cd ..
-   
-   # Frontend
-   cd frontend
-   npm install
-   cd ..
+   cd backend && pip install -r requirements.txt && cd ..
+   cd frontend && npm install && cd ..
    ```
 
-4. **Run the app**
+4. **Launch the app**
    
-   **Option A: Using the launcher script**
-   - Windows Explorer: Double-click `run_app.bat`
-   - PowerShell: Run `.\run_app.bat`
-   - Command Prompt: Run `run_app.bat`
+   **Windows (Recommended):**
+   ```powershell
+   .\run_app.bat
+   ```
    
-   **Option B: Manual start**
+   **Or manually** (any platform):
    ```bash
-   # Start from project root
-   cd backend && uvicorn main:app --reload --port 8000
+   # Terminal 1 - Backend
+   cd backend && uvicorn main:app --reload
    
-   # In a separate terminal
+   # Terminal 2 - Frontend
    cd frontend && npm run dev
    ```
-   
-   **Option C: Run backend from backend directory**
-   ```bash
-   # Navigate to backend directory
-   cd backend
-   
-   # Run uvicorn
-   uvicorn main:app --reload --port 8000
-   ```
 
-5. **Open** `http://localhost:5173`
+5. **Open** [http://localhost:5173](http://localhost:5173) 🎉
 
 ## Troubleshooting
 
-### "ModuleNotFoundError: No module named 'backend'"
-This error occurs if you run uvicorn from the backend directory without the code fix. The application now supports running from either the project root or the backend directory.
+<details>
+<summary><b>PowerShell: "run_app.bat is not recognized"</b></summary>
 
-**Solution**: Simply run `uvicorn main:app --reload` from the backend directory. The code will automatically handle the import paths.
-
-### "run_app.bat is not recognized" (PowerShell)
-PowerShell requires a `.\` prefix to run scripts in the current directory.
-
-**Solution**: Run `.\run_app.bat` instead of `run_app.bat`
-
-### Port already in use
-If you see errors about port 8000 or 5173 being in use:
-
-**Solution**: 
-```bash
-# Kill the process using port 8000 (backend)
-npx kill-port 8000
-
-# Or on Windows
-netstat -ano | findstr :8000
-taskkill /PID <PID> /F
+PowerShell requires `.\` prefix for local scripts:
+```powershell
+.\run_app.bat
 ```
+</details>
 
-### Dependencies not installed
-Make sure you've installed all dependencies before running:
+<details>
+<summary><b>Port already in use</b></summary>
 
+Kill the process using the port:
 ```bash
-# Backend dependencies
-cd backend
-pip install -r requirements.txt
-
-# Frontend dependencies
-cd frontend
-npm install
+npx kill-port 8000 5173
 ```
+</details>
 
+<details>
+<summary><b>Missing dependencies</b></summary>
+
+Make sure you ran the install commands:
+```bash
+cd backend && pip install -r requirements.txt
+cd frontend && npm install
+```
+</details>
 
 
 ## Contributing
