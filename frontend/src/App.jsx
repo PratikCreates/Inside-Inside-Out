@@ -796,8 +796,8 @@ function App() {
                               {p.icon}
                             </div>
                           </div>
-                          {/* Name Label - Always Visible */}
-                          <div className="absolute -top-14 opacity-100 transition-all pointer-events-none scale-100">
+                          {/* Name Label - Moved to bottom for cleaner look */}
+                          <div className="absolute -bottom-10 opacity-0 group-hover/btn:opacity-100 transition-all pointer-events-none scale-100 z-20">
                             <span className="bg-black/90 backdrop-blur-md px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest text-white border border-white/20 shadow-xl">
                               {p.name}
                             </span>
@@ -805,13 +805,7 @@ function App() {
                         </button>
                       )
                     })}
-                    <div className="w-[1px] h-20 bg-white/10 mx-2" />
-                    <button
-                      onClick={() => setSelectedPersonas(PERSONAS.filter(p => p.name !== 'Headquarters').map(p => p.name))}
-                      className="w-14 h-14 rounded-full flex items-center justify-center bg-white/5 border border-white/10 text-white/30 hover:text-white hover:bg-white/10 transition-all text-3xl" title="Reset All"
-                    >
-                      ↺
-                    </button>
+                    <div className="w-0" /> {/* Spacer removed, Reset button moved to Input Bar */}
                   </div>
                 </div>
               )}
@@ -828,10 +822,21 @@ function App() {
                       onChange={(e) => setInputText(e.target.value)}
                       onKeyDown={(e) => e.key === 'Enter' && handleSend(inputText)}
                       placeholder={`Direct message to ${activePersona.name === 'Headquarters' ? 'Headquarters' : activePersona.name}...`}
-                      className="flex-1 bg-white/10 h-[70px] md:h-[90px] px-10 text-xl text-white placeholder-white/40 focus:outline-none font-light tracking-wide rounded-l-full"
+                      className="flex-1 bg-white/10 h-16 md:h-20 px-8 text-lg text-white placeholder-white/40 focus:outline-none font-light tracking-wide rounded-l-full"
                     />
 
-                    <div className="flex items-center gap-4 pr-6">
+                    <div className="flex items-center gap-3 pr-4">
+                      {/* Reset Selection Button (Moved Here) */}
+                      <button
+                        onClick={() => setSelectedPersonas(PERSONAS.filter(p => p.name !== 'Headquarters').map(p => p.name))}
+                        className="w-10 h-10 rounded-full flex items-center justify-center text-white/20 hover:text-white hover:bg-white/10 transition-all relative group"
+                        title="Reset Characters"
+                      >
+                        <span className="text-xl">↺</span>
+                      </button>
+
+                      <div className="w-[1px] h-10 bg-white/10 mx-1" />
+
                       <AnimatePresence>
                         {inputText && (
                           <motion.button
@@ -846,14 +851,14 @@ function App() {
 
                       <button
                         onClick={toggleCall}
-                        className={`relative w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300
+                        className={`relative w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center transition-all duration-300 shadow-xl
                             ${callActiveState
-                            ? 'bg-red-600 text-white shadow-[0_0_30px_rgba(220,38,38,0.5)] animate-pulse'
-                            : 'bg-white/5 text-white/30 hover:bg-white/10 hover:text-white'
+                            ? 'bg-red-600 text-white shadow-[0_0_40px_rgba(220,38,38,0.6)] animate-pulse scale-105'
+                            : 'bg-gradient-to-br from-white/10 to-white/5 border border-white/10 text-white hover:scale-105 hover:border-white/30'
                           }
                           `}
                       >
-                        {callActiveState ? <PhoneOff className="w-5 h-5" /> : <Mic className="w-5 h-5" />}
+                        {callActiveState ? <PhoneOff className="w-6 h-6 md:w-7 md:h-7" /> : <Mic className="w-6 h-6 md:w-7 md:h-7" />}
                       </button>
                     </div>
                   </div>
