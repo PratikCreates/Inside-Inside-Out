@@ -929,9 +929,9 @@ function App() {
               <Lock className="w-5 h-5" />
             </button>
 
-            {/* FUN MODE BUTTON (Existing) */}
-            <button onClick={() => setViewMode('scenario')} className="w-14 h-14 rounded-full flex items-center justify-center bg-white/5 backdrop-blur-xl border border-white/10 hover:bg-white/10 text-white/40 hover:text-white transition-all shadow-2xl group relative z-50" title="Fun Mode">
-              <SlidersHorizontal className="w-6 h-6 group-hover:rotate-90 transition-transform duration-500" />
+            {/* FUN MODE BUTTON (Enhanced) */}
+            <button onClick={() => setViewMode('scenario')} className="w-20 h-20 rounded-full flex items-center justify-center bg-gradient-to-br from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 text-white shadow-[0_0_40px_rgba(192,38,211,0.6)] hover:shadow-[0_0_60px_rgba(192,38,211,0.8)] transition-all group relative z-50 border border-white/20 hover:scale-110" title="Enter Fun Mode">
+              <Sparkles className="w-10 h-10 animate-pulse" />
             </button>
 
             {/* PROMO ARROW - Pointing to Fun Mode */}
