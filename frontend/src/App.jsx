@@ -939,7 +939,7 @@ function App() {
               initial={{ x: -10, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 1 }}
-              className="absolute top-16 right-[-34px] flex flex-col items-center pointer-events-none w-32"
+              className="absolute top-28 right-[-34px] flex flex-col items-center pointer-events-none w-32"
             >
               <div className="text-[10px] font-black tracking-widest text-yellow-400 mb-1 animate-pulse">TRY FUN MODE</div>
               <svg className="w-6 h-6 text-yellow-500 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
