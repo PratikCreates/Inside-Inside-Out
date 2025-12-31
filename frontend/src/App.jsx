@@ -565,21 +565,21 @@ function App() {
             exit={{ opacity: 0, scale: 0.95 }}
             className="w-full h-full flex flex-col items-center justify-center relative z-50 max-w-2xl"
           >
-            {/* Animated Background Glow */}
+            {/* Animated Background Glow - Subtle */}
             <div className="absolute inset-0 pointer-events-none">
               <motion.div
-                className="absolute top-1/4 left-1/4 w-96 h-96 bg-orange-500/30 rounded-full blur-[120px]"
+                className="absolute top-1/4 left-1/4 w-96 h-96 bg-orange-500/15 rounded-full blur-[100px]"
                 animate={{
                   scale: [1, 1.2, 1],
-                  opacity: [0.3, 0.5, 0.3]
+                  opacity: [0.15, 0.25, 0.15]
                 }}
                 transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
               />
               <motion.div
-                className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/30 rounded-full blur-[120px]"
+                className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/15 rounded-full blur-[100px]"
                 animate={{
                   scale: [1.2, 1, 1.2],
-                  opacity: [0.4, 0.2, 0.4]
+                  opacity: [0.2, 0.1, 0.2]
                 }}
                 transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
               />
@@ -605,9 +605,9 @@ function App() {
               </span>
             </motion.h1>
 
-            <div className="w-full space-y-8 bg-gradient-to-br from-orange-900/20 via-black/50 to-cyan-900/20 backdrop-blur-3xl p-10 rounded-[3rem] border border-white/20 ring-1 ring-cyan-500/20 shadow-[0_0_80px_rgba(6,182,212,0.15)] relative overflow-hidden">
-              {/* Animated border glow */}
-              <div className="absolute inset-0 rounded-[3rem] bg-gradient-to-r from-orange-500/20 via-pink-500/20 to-cyan-500/20 opacity-50 blur-xl animate-pulse pointer-events-none" />
+            <div className="w-full space-y-8 bg-gradient-to-br from-orange-900/15 via-black/60 to-cyan-900/15 backdrop-blur-3xl p-10 rounded-[3rem] border border-white/10 ring-1 ring-cyan-500/10 shadow-[0_0_40px_rgba(6,182,212,0.08)] relative overflow-hidden">
+              {/* Animated border glow - Subtle */}
+              <div className="absolute inset-0 rounded-[3rem] bg-gradient-to-r from-orange-500/10 via-pink-500/10 to-cyan-500/10 opacity-30 blur-xl animate-pulse pointer-events-none" />
 
               <div className="space-y-5 relative z-10">
                 <label className="text-sm font-bold uppercase tracking-[0.25em] text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-400 ml-4">
@@ -616,7 +616,7 @@ function App() {
                 <input
                   id="scenario-topic"
                   placeholder="What should the emotions discuss?"
-                  className="w-full bg-gradient-to-br from-white/10 to-white/5 border-2 border-cyan-500/30 text-xl p-6 rounded-3xl text-white placeholder-white/30 focus:outline-none focus:border-cyan-400/60 focus:bg-white/15 transition-all font-light shadow-[0_0_30px_rgba(6,182,212,0.1)] focus:shadow-[0_0_40px_rgba(6,182,212,0.3)]"
+                  className="w-full bg-gradient-to-br from-white/10 to-white/5 border-2 border-cyan-500/20 text-xl p-6 rounded-3xl text-white placeholder-white/30 focus:outline-none focus:border-cyan-400/40 focus:bg-white/15 transition-all font-light shadow-[0_0_20px_rgba(6,182,212,0.05)] focus:shadow-[0_0_30px_rgba(6,182,212,0.15)]"
                   autoFocus
                   onKeyDown={(e) => {
                     if (e.key === 'Enter') {
@@ -707,10 +707,10 @@ function App() {
           </motion.div>
         ) : (
           /* REGULAR HOME VIEW - CENTERED COMMAND CENTER */
-          <div className="flex-1 w-full flex flex-col items-center justify-center relative z-20 pb-20">
+          <div className="flex-1 w-full flex flex-col items-center justify-center relative z-20 pb-8">
 
             {/* CORE UNIT: Hero + Agents (Grouped to move together) */}
-            <div className="flex flex-col items-center space-y-5 mb-10 w-full">
+            <div className="flex flex-col items-center space-y-5 mb-10 w-full -mt-40">
 
               {/* 1. HERO VISUAL */}
               <AnimatePresence mode="wait">
@@ -775,7 +775,7 @@ function App() {
                 </motion.div>
               </AnimatePresence>
 
-              {/* 2. ENLARGED COMMAND DECK - Floating below Hero */}
+              {/* 2. ENLARGED COMMAND DECK - Below Hero, closer spacing */}
               {!isProcessing && (
                 <div className="flex flex-col items-center gap-4 group mt-4">
                   <div className="flex gap-4 md:gap-8 justify-center items-center px-12 py-6 rounded-[3rem] bg-neutral-900/80 border border-white/20 backdrop-blur-3xl shadow-[0_30px_80px_rgba(0,0,0,0.9)] transition-all hover:bg-neutral-900/90 border-t-white/30 ring-1 ring-white/5">
@@ -818,8 +818,8 @@ function App() {
 
             </div>
 
-            {/* 3. CAPTION / CAPTION AREA - Cinematic floating captions */}
-            <div className="absolute bottom-40 w-full text-center min-h-[120px] flex flex-col items-center justify-center max-w-4xl px-8 pointer-events-none">
+            {/* 3. CAPTION / CAPTION AREA - Dynamic font scaling */}
+            <div className="absolute bottom-96 w-full text-center min-h-[120px] flex flex-col items-center justify-center max-w-4xl px-8 pointer-events-none">
 
               {/* AI Response / Captions */}
               <AnimatePresence mode="wait">
@@ -837,7 +837,10 @@ function App() {
                         {/* Redundant name removed to prevent overlap */}
                       </div>
                     )}
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.15] tracking-tight text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)] max-w-3xl">
+                    <h2 className={`font-medium leading-[1.2] tracking-tight text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)] max-w-3xl ${lastMessage.text.length > 200 ? 'text-xl md:text-2xl lg:text-3xl' : // Very long
+                      lastMessage.text.length > 120 ? 'text-2xl md:text-3xl lg:text-4xl' : // Long
+                        'text-3xl md:text-4xl lg:text-5xl' // Normal
+                      }`}>
                       {lastMessage.text}
                     </h2>
                   </motion.div>
