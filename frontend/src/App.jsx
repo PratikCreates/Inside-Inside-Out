@@ -811,7 +811,7 @@ function App() {
               )}
 
               {/* INPUT BAR - INTEGRATED INTO FLOW */}
-              <div className="w-full max-w-4xl px-6 relative z-50">
+              <div className="w-full max-w-4xl px-6 relative z-50 mt-8">
                 <div className="w-full relative group">
                   <div className={`absolute -inset-1 rounded-full bg-gradient-to-r ${activePersona.color} opacity-0 group-focus-within:opacity-20 blur-xl transition-all duration-1000`} />
 
