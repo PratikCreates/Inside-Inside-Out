@@ -816,6 +816,50 @@ function App() {
                 </div>
               )}
 
+              {/* INPUT BAR - INTEGRATED INTO FLOW */}
+              <div className="w-full max-w-4xl px-6 relative z-50">
+                <div className="w-full relative group">
+                  <div className={`absolute -inset-1 rounded-full bg-gradient-to-r ${activePersona.color} opacity-0 group-focus-within:opacity-20 blur-xl transition-all duration-1000`} />
+
+                  <div className="relative w-full bg-black/80 backdrop-blur-3xl border border-white/10 rounded-full flex items-center shadow-[0_30px_100px_rgba(0,0,0,0.8)] overflow-hidden">
+
+                    <input
+                      value={inputText}
+                      onChange={(e) => setInputText(e.target.value)}
+                      onKeyDown={(e) => e.key === 'Enter' && handleSend(inputText)}
+                      placeholder={`Direct message to ${activePersona.name === 'Headquarters' ? 'Headquarters' : activePersona.name}...`}
+                      className="flex-1 bg-white/10 h-[70px] md:h-[90px] px-10 text-xl text-white placeholder-white/40 focus:outline-none font-light tracking-wide rounded-l-full"
+                    />
+
+                    <div className="flex items-center gap-4 pr-6">
+                      <AnimatePresence>
+                        {inputText && (
+                          <motion.button
+                            initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ scale: 0 }}
+                            onClick={() => handleSend(inputText)}
+                            className="p-3 rounded-full bg-white/10 hover:bg-white text-white hover:text-black transition-all"
+                          >
+                            <Send className="w-5 h-5" />
+                          </motion.button>
+                        )}
+                      </AnimatePresence>
+
+                      <button
+                        onClick={toggleCall}
+                        className={`relative w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300
+                            ${callActiveState
+                            ? 'bg-red-600 text-white shadow-[0_0_30px_rgba(220,38,38,0.5)] animate-pulse'
+                            : 'bg-white/5 text-white/30 hover:bg-white/10 hover:text-white'
+                          }
+                          `}
+                      >
+                        {callActiveState ? <PhoneOff className="w-5 h-5" /> : <Mic className="w-5 h-5" />}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
             </div>
 
             {/* 3. CAPTION / CAPTION AREA - Dynamic font scaling */}
@@ -1032,53 +1076,7 @@ function App() {
         )}
       </AnimatePresence>
 
-      {/* FIXED BOTTOM CONSOLE */}
-      {
-        viewMode === 'home' && (
-          <div className="fixed bottom-12 left-0 right-0 z-50 flex justify-center px-6">
-            <div className="w-full max-w-4xl relative group">
-              <div className={`absolute -inset-1 rounded-full bg-gradient-to-r ${activePersona.color} opacity-0 group-focus-within:opacity-20 blur-xl transition-all duration-1000`} />
-
-              <div className="relative w-full bg-black/80 backdrop-blur-3xl border border-white/10 rounded-full flex items-center shadow-[0_30px_100px_rgba(0,0,0,0.8)] overflow-hidden">
-
-                <input
-                  value={inputText}
-                  onChange={(e) => setInputText(e.target.value)}
-                  onKeyDown={(e) => e.key === 'Enter' && handleSend(inputText)}
-                  placeholder={`Direct message to ${activePersona.name === 'Headquarters' ? 'Headquarters' : activePersona.name}...`}
-                  className="flex-1 bg-white/10 h-[70px] md:h-[90px] px-10 text-xl text-white placeholder-white/40 focus:outline-none font-light tracking-wide rounded-l-full"
-                />
-
-                <div className="flex items-center gap-4 pr-6">
-                  <AnimatePresence>
-                    {inputText && (
-                      <motion.button
-                        initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ scale: 0 }}
-                        onClick={() => handleSend(inputText)}
-                        className="p-3 rounded-full bg-white/10 hover:bg-white text-white hover:text-black transition-all"
-                      >
-                        <Send className="w-5 h-5" />
-                      </motion.button>
-                    )}
-                  </AnimatePresence>
-
-                  <button
-                    onClick={toggleCall}
-                    className={`relative w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300
-                        ${callActiveState
-                        ? 'bg-red-600 text-white shadow-[0_0_30px_rgba(220,38,38,0.5)] animate-pulse'
-                        : 'bg-white/5 text-white/30 hover:bg-white/10 hover:text-white'
-                      }
-                      `}
-                  >
-                    {callActiveState ? <PhoneOff className="w-5 h-5" /> : <Mic className="w-5 h-5" />}
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        )
-      }
+      {/* FIXED BOTTOM CONSOLE - Removed and integrated above */}
     </div >
   );
 }
